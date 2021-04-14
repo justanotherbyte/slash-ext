@@ -18,7 +18,7 @@ setup(
     description=DESCRIPTION,
     long_description_content_type="text/markdown",
     long_description=open("README.md").read(),
-    packages=find_packages(),
+    packages=["discord.ext.slash"],
     install_requires=['discord.py', 'aiohttp'],
     keywords=['python', 'discord.py', 'slash commands', 'discord', 'api', 'discord api'],
     classifiers=[
