@@ -1,0 +1,36 @@
+{
+    "id": "831586358819684362",
+    "application_id": "770301542170361896",
+    "name": "blep",
+    "description": "Send a random adorable animal photo",
+    "version": "831587900030058578",
+    "default_permission": true,
+    "guild_id": "830418497837203457",
+    "options": [
+        {
+            "type": 3,
+            "name": "animal",
+            "description": "The type of animal",
+            "required": true,
+            "choices": [
+                {
+                    "name": "Dog",
+                    "value": "animal_dog"
+                },
+                {
+                    "name": "Cat",
+                    "value": "animal_cat"
+                },
+                {
+                    "name": "Penguin",
+                    "value": "animal_penguin"
+                }
+            ]
+        },
+        {
+            "type": 5,
+            "name": "only_smol",
+            "description": "Whether to show only baby animals"
+        }
+    ]
+}

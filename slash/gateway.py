@@ -1,7 +1,7 @@
 import aiohttp
 import asyncio
 from typing import Optional, Union
-from slash.abc import SlashContext
+from slash.abc import SlashContext, SlashCommand
 import discord
 from discord.ext import commands
 
@@ -18,6 +18,7 @@ class Gateway:
         self.application_id = application_id
         self.token = token
         self.v8 = "https://discord.com/api/v8"
+        self.bot = bot
 
     async def request_command(self, json : dict, guild_id : int = None):
         route = "/applications/{}".format(self.application_id)
@@ -47,7 +48,8 @@ class Gateway:
     async def create_command(self, command_name : str, description : str, options : list = None, guild_id : int = None):
         payload = {"name" : command_name, "description" : description, "options" : options or []}
         response = await self.request_command(payload, guild_id)
-        return SlashContext(response)
+        print(response)
+        return SlashCommand(response)
 
     
 

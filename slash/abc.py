@@ -7,11 +7,16 @@ import aiohttp
 class SlashCommand:
     def __init__(self, create_payload : dict):
         self._payload = create_payload
-        self._data = self._payload["d"]
 
     @property
     def id(self):
-        return self._data["id"]
+        return self._payload["id"]
+    
+    @property
+    def application_id(self):
+        return self._payload["application_id"]
+
+    
 
 
 
@@ -80,6 +85,21 @@ class SlashContext:
             "embeds" : embeds
         }
         return await self.__session__.post(route, json = json)
+
+    async def edit(self, content : str, embeds : Optional[List[discord.Embed]] = []):
+        application_id = self._interaction.raw_data["application_id"]
+        token = self._interaction.token
+        route = self.v8 + "/webhooks/{}/{}/messages/@original".format(application_id, token)
+        __embeds__ = []
+        for embed in embeds:
+            __embeds__.append(embed.to_dict())
+        json = {
+            "content" : content,
+            "embeds" : embeds
+        }
+        return await self.__session__.patch(route, json = json)
+
+    
 
         
 
