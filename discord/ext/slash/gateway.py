@@ -1,7 +1,7 @@
 import aiohttp
 import asyncio
 from typing import Optional, Union
-from slash.abc import SlashContext, SlashCommand
+from discord.ext.slash.abc import SlashContext, SlashCommand
 import discord
 from discord.ext import commands
 

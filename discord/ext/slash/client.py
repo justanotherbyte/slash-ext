@@ -1,8 +1,8 @@
 import discord
 from discord.ext import commands
 from typing import Union, Optional, List
-from slash.gateway import Gateway
-from slash.abc import SlashInteraction, SlashContext
+from discord.ext.slash.gateway import Gateway
+from discord.ext.slash.abc import SlashInteraction, SlashContext
 import asyncio
 import json
 
