@@ -28,5 +28,8 @@ setup(
         "Operating System :: Unix",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
-    ]
+    ],
+    project_urls={
+        "GitHub" : "https://github.com/quiktea/slash-ext"
+    }
 )

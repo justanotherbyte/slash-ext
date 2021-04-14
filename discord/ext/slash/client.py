@@ -10,7 +10,6 @@ class SlashBot:
     def __init__(self, bot : Union[discord.Client, commands.Bot], bot_token : str, bot_id : int):
         self._bot = bot
         self._token = self._bot.http.token or bot_token
-        print(self._token)
         self._id = bot_id
         self._gateway = Gateway(self._id, self._token, self._bot)
         self._bot.on_socket_response = self.on_socket_response
@@ -31,7 +30,6 @@ class SlashBot:
             command_key = self._slash_commands.get(slash_id)
             if command_key is not None:
                 ack = await self._gateway.ack_heartbeat(int(interaction_id), interaction_token)
-                print(await ack.text())
                 inter_slash = SlashInteraction(payload, self._session)
                 context = SlashContext(self._bot, inter_slash)
                 func = command_key.get("func")
@@ -49,13 +47,11 @@ class SlashBot:
                 for guild_id in guild_ids:
                     slash_command = loop.run_until_complete(self._gateway.create_command(name, description, options = options, guild_id = guild_id))
                     self._slash_commands.update({slash_command.id : {"cmd" : slash_command, "func" : func}})
-                    print("Created slashy")
+                    
             else:
                 slash_command = loop.run_until_complete(self._gateway.create_command(name, description, options = options))
                 self._slash_commands.update({slash_command.id : {"cmd" : slash_command, "func" : func}})
-                print("Created slashy")
 
-            print(self._slash_commands)
 
 
             
