@@ -3,3 +3,6 @@ Scripts/
 Lib/
 pyvenv.cfg
 testbot.py
+build/
+dist/
+dpy_slash_ext.egg-info/
