@@ -12,7 +12,7 @@ DESCRIPTION = 'A discord.py slash commands extension'
 # Setting up
 setup(
     name="dpy-slash-ext",
-    version=__version__,
+    version="0.0.1a",
     author="quiktea",
     author_email="wishymovies@gmail.com",
     description=DESCRIPTION,
