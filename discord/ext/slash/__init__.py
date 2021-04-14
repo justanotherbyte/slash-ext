@@ -7,4 +7,4 @@ __version__ = '0.0.1a'
 
 
 
-from slash.client import *
+from discord.ext.slash.client import *
