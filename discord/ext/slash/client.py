@@ -2,9 +2,9 @@ import discord
 from discord.ext import commands
 from typing import Union, Optional, List
 from slash.gateway import Gateway
-from slash.abc import SlashInteraction
+from slash.abc import SlashInteraction, SlashContext
 import asyncio
-
+import json
 
 class SlashBot:
     def __init__(self, bot : Union[discord.Client, commands.Bot], bot_token : str, bot_id : int):
@@ -24,15 +24,20 @@ class SlashBot:
         if payload["t"] == "READY":
             self._id = self._bot.user.id
         if payload["t"] == "INTERACTION_CREATE":
-            data = payload["d"]
-            token = data["token"]
-            interaction_id = int(data["id"])
-            slash_interaction = SlashInteraction(payload)
-            response = await self._gateway.ack_heartbeat(interaction_id, token)
-            self._pending_interactions.update({interaction_id : slash_interaction})
-            key = self._slash_commands.get(interaction_id)
-            if key is not None:
-                func = key["func"]
+            payload_data = payload["d"]
+            slash_id = payload_data["data"]["id"]
+            interaction_id = payload_data["id"]
+            interaction_token = payload_data["token"]
+            command_key = self._slash_commands.get(slash_id)
+            if command_key is not None:
+                ack = await self._gateway.ack_heartbeat(int(interaction_id), interaction_token)
+                print(await ack.text())
+                inter_slash = SlashInteraction(payload, self._session)
+                context = SlashContext(self._bot, inter_slash)
+                func = command_key.get("func")
+                coro = func
+                await coro(context)
+            
                 
 
 
@@ -43,11 +48,11 @@ class SlashBot:
             if len(guild_ids) != 0:
                 for guild_id in guild_ids:
                     slash_command = loop.run_until_complete(self._gateway.create_command(name, description, options = options, guild_id = guild_id))
-                    self._slash_commands.update({slash_command.id : slash_command})
+                    self._slash_commands.update({slash_command.id : {"cmd" : slash_command, "func" : func}})
                     print("Created slashy")
             else:
                 slash_command = loop.run_until_complete(self._gateway.create_command(name, description, options = options))
-                self._slash_commands.update({slash_command.id : slash_command})
+                self._slash_commands.update({slash_command.id : {"cmd" : slash_command, "func" : func}})
                 print("Created slashy")
 
             print(self._slash_commands)

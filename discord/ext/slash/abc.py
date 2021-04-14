@@ -82,7 +82,7 @@ class SlashContext:
             __embeds__.append(embed.to_dict())
         json = {
             "content" : content,
-            "embeds" : embeds
+            "embeds" : __embeds__
         }
         return await self.__session__.post(route, json = json)
 
@@ -95,7 +95,7 @@ class SlashContext:
             __embeds__.append(embed.to_dict())
         json = {
             "content" : content,
-            "embeds" : embeds
+            "embeds" : __embeds__
         }
         return await self.__session__.patch(route, json = json)
 
