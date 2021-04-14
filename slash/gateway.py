@@ -37,7 +37,7 @@ class Gateway:
     async def ack_heartbeat(self, interaction_id : int, interaction_token : str):
         route = "https://discord.com/api/v8/interactions/{}/{}/callback".format(interaction_id, interaction_token)
         json = {
-            "type": 2
+            "type": 5
         }
         return await self.session.post(route, json = json)
 

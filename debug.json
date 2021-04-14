@@ -1,0 +1,36 @@
+{
+    "t": "INTERACTION_CREATE",
+    "s": 5,
+    "op": 0,
+    "d": {
+        "version": 1,
+        "type": 2,
+        "token": "aW50ZXJhY3Rpb246ODMxNjMyNjE4MzYwNzk5MjkyOjJhcXI3NVBzSnJ5RnFVMjNQWDhxR0NjMW96alNLVFFHalREWkpJeVNnT0t1a1JIV1FqS3k4cmkycDlad2lJRE1yajZaSEtLcUJuVjJRcFg0RGF5WDNhMGVWUmhINmJHaTAyV2lwWUNBM1ZacVlHUmt5YUVxeG5NRmppWlNuNjV4",
+        "member": {
+            "user": {
+                "username": "moonie",
+                "public_flags": 128,
+                "id": "691406006277898302",
+                "discriminator": "6598",
+                "avatar": "b0f0697b5ee66782f7f05b40caba8454"
+            },
+            "roles": [],
+            "premium_since": null,
+            "permissions": "8589934591",
+            "pending": false,
+            "nick": "aadad",
+            "mute": false,
+            "joined_at": "2021-04-10T12:26:38.380000+00:00",
+            "is_pending": false,
+            "deaf": false
+        },
+        "id": "831632618360799292",
+        "guild_id": "830418497837203457",
+        "data": {
+            "name": "test",
+            "id": "831627435640488016"
+        },
+        "channel_id": "830418498353758210",
+        "application_id": "770301542170361896"
+    }
+}
