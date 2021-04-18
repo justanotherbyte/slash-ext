@@ -9,7 +9,7 @@ import discord
 from discord.ext import commands, slash
 from discord.ext.slash.abc import SlashContext
 
-bot = commands.Bot(command_prefix = "!", case_insensitive = True)
+bot = commands.Bot(command_prefix="!", case_insensitive=True)
 slashParent = slash.SlashBot(bot, "<bot token>", 770301542170361896) #<= Bot User ID
 
 @bot.event
@@ -17,13 +17,12 @@ async def on_ready():
     print("Ready!")
 
 
-
-
-@slashParent.slash_command(name = "rachel", description = "hola", guild_ids=[830418497837203457]) #make sure to not have names with spaces in them as discord will not create them.
-async def dummy(ctx : SlashContext):
+@slashParent.slash_command(name="rachel", description="hola", guild_ids=[830418497837203457]) #make sure to not have names with spaces in them as discord will not create them.
+async def dummy(ctx: SlashContext):
     embeds = [discord.Embed(title = "Hello World")]
-    await ctx.send(content = "Hello World", embeds = embeds)
-    await ctx.edit(content = "Hello Discord")
+    await ctx.send(content= "Hello World", embeds=embeds)
+    await ctx.edit(content= "Hello Discord")
+
 
 @bot.event
 async def on_slash_recieve(payload): #=> event that is fired when a slash command is fired and it is found in the bot's cache
