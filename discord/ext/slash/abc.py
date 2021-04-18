@@ -5,23 +5,20 @@ import aiohttp
 
 
 class SlashCommand:
-    def __init__(self, create_payload : dict):
-        self._payload = create_payload
+    def __init__(self, payload: dict):
+        self._payload = payload
 
     @property
     def id(self):
         return self._payload["id"]
-    
+
     @property
     def application_id(self):
         return self._payload["application_id"]
 
-    
-
-
 
 class SlashInteraction:
-    def __init__(self, payload : dict, session : Optional[aiohttp.ClientSession] = None):
+    def __init__(self, payload: dict, session: Optional[aiohttp.ClientSession] = None):
         self._payload = payload
         self._data = self._payload["d"]
         self._session = session
@@ -46,17 +43,13 @@ class SlashInteraction:
     def __session__(self):
         return self._session
 
-    
-    
-
 
 class SlashContext:
-    def __init__(self, bot : Union[discord.Client, commands.Bot], slash_interaction : SlashInteraction):
+    def __init__(self, bot: Union[discord.Client, commands.Bot], slash_interaction: SlashInteraction):
         self._interaction = slash_interaction
         self._bot = bot
         self.v8 = "https://discord.com/api/v8"
         self.__session__ = self._interaction.__session__
-
 
     @property
     def author(self) -> discord.Member:
@@ -73,7 +66,7 @@ class SlashContext:
         _id = self._interaction.raw_data["channel_id"]
         return self.guild.get_channel(_id)
 
-    async def send(self, content : str, embeds : Optional[List[discord.Embed]] = []):
+    async def send(self, content: str, embeds: Optional[List[discord.Embed]] = []):
         application_id = self._interaction.raw_data["application_id"]
         token = self._interaction.token
         route = self.v8 + "/webhooks/{}/{}".format(application_id, token)
@@ -86,7 +79,7 @@ class SlashContext:
         }
         return await self.__session__.post(route, json = json)
 
-    async def edit(self, content : str, embeds : Optional[List[discord.Embed]] = []):
+    async def edit(self, content: str, embeds: Optional[List[discord.Embed]] = []):
         application_id = self._interaction.raw_data["application_id"]
         token = self._interaction.token
         route = self.v8 + "/webhooks/{}/{}/messages/@original".format(application_id, token)
@@ -94,15 +87,7 @@ class SlashContext:
         for embed in embeds:
             __embeds__.append(embed.to_dict())
         json = {
-            "content" : content,
-            "embeds" : __embeds__
+            "content": content,
+            "embeds": __embeds__
         }
         return await self.__session__.patch(route, json = json)
-
-    
-
-        
-
-
-
-
