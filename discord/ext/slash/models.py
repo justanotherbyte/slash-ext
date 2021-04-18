@@ -1,7 +1,7 @@
-from typing import Union, Optional, List
+import aiohttp
 import discord
 from discord.ext import commands
-import aiohttp
+from typing import Union, Optional, List
 
 
 class SlashCommand:

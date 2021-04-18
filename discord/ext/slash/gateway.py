@@ -1,6 +1,6 @@
 import aiohttp
 import discord
-from discord.ext.slash.abc import SlashCommand
+from discord.ext.slash.models import SlashCommand
 from discord.ext import commands
 from typing import Union
 

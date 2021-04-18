@@ -2,7 +2,7 @@ import asyncio
 import discord
 from discord.ext import commands
 from discord.ext.slash.gateway import Gateway
-from discord.ext.slash.abc import SlashInteraction, SlashContext
+from discord.ext.slash.models import SlashInteraction, SlashContext
 from typing import Union, Optional, List
 
 

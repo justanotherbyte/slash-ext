@@ -7,3 +7,4 @@ build/
 dist/
 dpy_slash_ext.egg-info/
 __pycache__/
+.vscode/
